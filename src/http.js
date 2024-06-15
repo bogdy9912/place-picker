@@ -27,6 +27,15 @@ const updateUserPlaces = async (places) => {
   return resData.message;
 };
 
+const fetchUserPlaces = async () => {
+  const response = await fetch("http://localhost:3000/user-places");
+  const resData = await response.json();
 
+  if (!response.ok) {
+    throw new Error("failed to fetch user places");
+  }
 
-export { fetchAvailablePlaces, updateUserPlaces };
+  return resData.places;
+};
+
+export { fetchAvailablePlaces, updateUserPlaces, fetchUserPlaces };
